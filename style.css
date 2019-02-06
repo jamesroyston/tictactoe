@@ -1,14 +1,15 @@
 html, body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #000;
-  color: #fff;
+  background-color: rgb(255, 255, 255);
+  color: rgb(150, 150, 150);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  font-size: 16px;
 }
 
 body {
@@ -24,15 +25,78 @@ h1 {
   box-sizing: border-box;
   width: 100px;
   height: 100px;
-  border: #fff solid 1px;
-  font-size: 65px;
+  border: rgb(122, 122, 122) solid 1px;
+  font-size: 50px;
+  text-align: center;
+}
+
+.square:nth-child(1),
+.square:nth-child(2),
+.square:nth-child(3) {
+  border-top: none;
+}
+.square:nth-child(1),
+.square:nth-child(4),
+.square:nth-child(7) {
+  border-left: none;
+}
+.square:nth-child(3),
+.square:nth-child(6),
+.square:nth-child(9) {
+  border-right: none;
 }
 
 .square:hover {
-  background-color: rgb(29, 139, 62);
+  background-color: rgba(143, 143, 143, 0.267);
 }
 
 .gameboard {
   border-collapse: collapse;
   margin: 0 auto;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  padding-top: 100px;
+  background-color: white;
+  color: black;
+  height: 100%;
+  width: 100%;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.4);
+  
+}
+
+.modal_content {
+  margin: 0 auto;
+  background-color: white;
+  width: 55%;
+  height: auto;
+  font-size: 30px;
+  font-weight: 500;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  box-shadow: 3px 8px 15px rgba(0,0,0,0.4);
+  display: flex;
+}
+
+.button {
+  font-size: 16px;
+  margin: .5em;
+}
+
+.modal_close {
+  background-color: red;
+  float: left;
+  font-size: 16px;
+}
+
+@keyframes animatetop {
+  from {opacity: 0}
+  to {top: 0; opacity: 1}
 }
