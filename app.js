@@ -40,6 +40,8 @@ const game = (() => {
 
   const init = () => {
     displayController.whoStartsModal();
+    turnCheck();
+    resetTurns();
     displayController.clearBoard();
     clearGameboardArr();
   }
@@ -56,11 +58,16 @@ const game = (() => {
 
   }
 
+  const resetTurns = () => {
+    turnObj.xTurn = false;
+    turnObj.oTurn = false;
+  }
+
   const switchTurns = () => {
     if (turnObj.xTurn == true) {
       turnObj.xTurn = false;
       turnObj.oTurn = true;
-    } else {
+    } else if (turnObj.oTurn == true) {
       turnObj.xTurn = true;
       turnObj.oTurn = false;
     }
