@@ -6,6 +6,7 @@ const playerFactory = (symbol, name) => {
     if (board.board[id] === '') {
       board.board[id] = marker;
       displayController.DOMstrings.squares[id].innerHTML = marker;
+      displayController.showTurn();
       game.switchTurns();
       let gameCheck = checker();
       if (didWinTest().didOWin.length > 0 || didWinTest().didXWin.length > 0) {
@@ -42,6 +43,7 @@ const game = (() => {
     displayController.clearBoard();
     clearGameboardArr();
     displayController.removeModal2();
+    displayController.clearTurns();
   }
 
   const clearGameboardArr = () => {
@@ -61,25 +63,9 @@ const game = (() => {
       turnObj.xTurn = true;
       turnObj.oTurn = false;
     }
+    displayController.showTurn()
   }
 
-  /*
-    game flow
-
-    I want to be able to start a game
-    I need a new board with no markers
-    I need to decide who goes first
-    I need to be able to place markers on the board
-    I need to be able to place board markers into board array
-    I want to be able to see whose turn it is to place a marker
-    I want to be able to check that my board placements have or have not won the game
-    I want to filter the board array into two new arrays
-      each array will contain either the X positions or the O positions
-    I will then compare the x and o arrays to the win array of arrays
-    I will compare by looping over the win array
-    If the win array has an array that === the  x or o arr: winner!
-    I want to be able to restart the game
-  */
 
   return {
     init,
@@ -172,7 +158,7 @@ const displayController = ((gameCtrl) => {
     app: document.querySelector('body'),
     squares: document.querySelectorAll('.square'),
     playerBtns: document.querySelectorAll('.player_button'),
-    winner: document.querySelector('#winner').innerHTML,
+    showturn: document.querySelector('.showturn'),
   }
 
   const displayHelpers = {
@@ -210,10 +196,10 @@ const displayController = ((gameCtrl) => {
         gameCtrl.turnObj.oTurn = true;
       }
     })
-    button.addEventListener('mouseover', function() {
+    button.addEventListener('mouseover', function () {
       button.classList.add('button_hover')
     })
-    button.addEventListener('mouseout', function() {
+    button.addEventListener('mouseout', function () {
       button.classList.remove('button_hover')
     })
   })
@@ -225,7 +211,7 @@ const displayController = ((gameCtrl) => {
     } else if (value == 'o') {
       setTimeout(removeModal, 800)
     }
-   }
+  }
 
 
   const whoStartsModal = () => {
@@ -236,6 +222,7 @@ const displayController = ((gameCtrl) => {
   const removeModal = () => {
     document.querySelector('#gamestart').style.display = 'none';
     displayHelpers.removeButtonStyles()
+    showTurn();
   }
 
 
@@ -271,8 +258,27 @@ const displayController = ((gameCtrl) => {
     })
   }
 
+  const showTurn = () => {
+    let {
+      xTurn,
+      oTurn
+    } = game.turnObj;
+    if (xTurn == true) {
+      DOMstrings.showturn.innerHTML = "X's Turn!";
+    } else if (oTurn == true) {
+      DOMstrings.showturn.innerHTML = "O's Turn!";
+    }
+    console.log(xTurn)
+    console.log(oTurn)
+  }
+
+  const clearTurns = () => {
+    DOMstrings.showturn.innerHTML = '';
+  }
 
   return {
+    clearTurns,
+    showTurn,
     showWinner,
     removeModal2,
     displayHelpers,

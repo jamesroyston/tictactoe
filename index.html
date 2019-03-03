@@ -28,29 +28,28 @@
         <button onclick="game.init()" class="playagain_button">Play Again?</button>
       </div>
     </div>
-
+    
+    <div class="showturn"></div>
     <div id="game_container">
-
       <table id="app" class="gameboard">
         <tr id="row_1">
           <td id="0" class="square"></td>
-        <td id="1" class="square"></td>
-        <td id="2" class="square"></td>
-      </tr>
-      <tr id="row_2">
-        <td id="3" class="square"></td>
-        <td id="4" class="square"></td>
-        <td id="5" class="square"></td>
-      </tr>
-      <tr id="row_3">
-        <td id="6" class="square"></td>
-        <td id="7" class="square"></td>
-        <td id="8" class="square"></td>
-      </tr>
-    </table>
-  </div>
+          <td id="1" class="square"></td>
+          <td id="2" class="square"></td>
+        </tr>
+        <tr id="row_2">
+          <td id="3" class="square"></td>
+          <td id="4" class="square"></td>
+          <td id="5" class="square"></td>
+        </tr>
+        <tr id="row_3">
+          <td id="6" class="square"></td>
+          <td id="7" class="square"></td>
+          <td id="8" class="square"></td>
+        </tr>
+      </table>
+    </div>
     <button class="newgame_button" onclick="game.init()">New Game</button>
-
   </div>
   <script src="/app.js" async defer></script>
 </body>
